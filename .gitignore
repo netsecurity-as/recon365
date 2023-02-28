@@ -1,0 +1,31 @@
+# Done include any txt files, except requirements.txt
+# Pushing the token.txt file to GitHub would be a shame
+*.txt
+!requirements.txt
+
+# Virtual Environment
+venv/
+
+# Editor Configurations
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+
+# Pip
+src/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Output files, except requirements.txt
+*.txt
+!requirements.txt
+
+# MacOS Folder Metadata File
+.DS_Store
+
+# Vim swap files
+*.swp
