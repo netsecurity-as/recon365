@@ -55,7 +55,7 @@ $ python3 recon365.py --jwt token.txt -t info@nrk.no
 
 ### Get info on a domain
 ```console
-$ python3 recon365.py --token teams_jwt_token.txt --target coop.no
+$ python3 recon365.py --token teams_jwt_token.txt --target nrk.no
 [+] nrk.no
  | State                   : 3
  | UserState               : 2
@@ -69,16 +69,6 @@ $ python3 recon365.py --token teams_jwt_token.txt --target coop.no
  | CloudInstanceIssuerUri  : urn:federation:MicrosoftOnline
 ```
 
-### A regular Office 365 user
-Note: currently the script checks if the user has skype and then show the output according to the fetched data. I havent had the opportunity to test on a user who has not created a Skype account. So this needs a more thorough testing
-
-```console
-$ python3 recon365.py -t token.txt -e joe@gmail.com
-Full Name       Joe Smith 
-Email Address   joe@gmail.com
-Skype ID        live:joe.smith
-User Type       SkypeConsumer
-```
 
 ## How to find your JWT token
 Visit https://teams.microsoft.com and fetch the JWT token from the Storage. Be aware that this token may expire after around 24 hours
