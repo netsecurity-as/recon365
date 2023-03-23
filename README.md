@@ -1,14 +1,14 @@
-<center>
-<h1>recon365</h1>
-Gather information from an email address connected to AzureAD or Office 365
+<h1 align="center">recon365</h1>
 <p align="center">
-  <a href="#example-outputs">Example outputs</a> •
-  <a href="#how-to-find-your-jwt-token">How to find your JWT token</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#references">References</a>
+Gather information from an email address connected to AzureAD or Office 365
 </p>
+<p align="center">
+<a href="#example-outputs">Example outputs</a> •
+<a href="#how-to-find-your-jwt-token">How to find your JWT token</a> •
+<a href="#usage">Usage</a> •
+<a href="#references">References</a>
 <img src="images/demo.png">
-</center>
+</p>
 
 ## Example outputs
 ### Get info on on an email address in Azure AD
