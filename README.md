@@ -1,30 +1,72 @@
 <center>
 <h1>recon365</h1>
-Gather information from an email address connected to Office 365
+Gather information from an email address connected to AzureAD or Office 365
+<p align="center">
+  <a href="#example-outputs">Example outputs</a> •
+  <a href="#how-to-find-your-jwt-token">How to find your JWT token</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#references">References</a>
+</p>
+<img src="images/demo.png">
 </center>
 
 ## Example outputs
-### User from external tenant
+### Get info on on an email address in Azure AD
 ```console
-$ python3 recon365.py --token teams_jwt_token.txt --email bob@example.com
-Full Name          Bob Smith 
-Email Address      bob@example.com
-Tenant Name        Example Company
-User Type          Federated
-Object ID          abcabc12-ab12-ab12-ab12-abcdabcd1234
-Tenant ID          afafaf89-90fa-fafa-fa23-dfad8ada8a9a
-Availability       Available
-Device Type        Desktop
+$ python3 recon365.py --jwt token.txt --target steinar.sonsteby@atea.no
+[+] steinar.sonsteby@atea.no
+ | tenantId          : 65f51067-7d65-4aa9-b996-4cc43a0d7111
+ | isShortProfile    : False
+ | accountEnabled    : True
+ | featureSettings   : {'coExistenceMode': 'TeamsOnly'}
+ | userPrincipalName : steinar.sonsteby@atea.com
+ | givenName         : steinar.sonsteby@atea.no
+ | surname           :
+ | email             : steinar.sonsteby@atea.com
+ | tenantName        : Atea
+ | displayName       : Steinar Sønsteby
+ | type              : Federated
+ | mri               : 8:orgid:edb2cd01-125a-4a7a-8f24-610c33d003fe
+ | objectId          : edb2cd01-125a-4a7a-8f24-610c33d003fe
+ | availability      : Offline
+ | devicieType       : Mobile
 ```
 
-### User from your own tenant
+### User with an Microsfot 356 account
+
 ```console
-$ python3 recon365.py --token teams_jwt_token.txt --email alice@othercompany.com
-Full Name          Alice Smith
-Email Address      alice@othercompany.com
-Tenant Name        Some Other Company
-User Type          ADUser
-Object ID          afafaf89-90fa-fafa-fa23-dfad8ada8a9a
+$ python3 recon365.py --jwt token.txt -t info@nrk.no
+[+] info@nrk.no
+ | skypeId           : karina-4a
+ | city              : bergen
+ | state             : bergen komune
+ | country           : Norway
+ | avatarUrl         : https://api.skype.com/users/karina-4a/profile/avatar
+ | isShortProfile    : False
+ | accountEnabled    : True
+ | userPrincipalName : info@nrk.no
+ | email             : info@nrk.no
+ | displayName       : karina grøneng
+ | type              : SkypeConsumer
+ | mri               : 8:karina-4a
+ | availability      : PresenceUnknown
+ | devicieType       : None
+```
+
+### Get info on a domain
+```console
+$ python3 recon365.py --token teams_jwt_token.txt --target coop.no
+[+] nrk.no
+ | State                   : 3
+ | UserState               : 2
+ | Login                   : nrk.no
+ | NameSpaceType           : Federated
+ | DomainName              : nrk.no
+ | FederationGlobalVersion : -1
+ | AuthURL                 : https://sts.nrk.no/adfs/ls/?username=nrk.no&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=
+ | FederationBrandName     : NRK
+ | CloudInstanceName       : microsoftonline.com
+ | CloudInstanceIssuerUri  : urn:federation:MicrosoftOnline
 ```
 
 ### A regular Office 365 user
@@ -50,11 +92,10 @@ usage: recon365.py [options]
 
 options:
   -h, --help            show this help message and exit
-  --token PATH, -t PATH
-                        Path to file containing your Microsoft Teams JWT token
-  --email EMAIL, -e EMAIL
-                        Email address you'd like to fetch information for
-  --raw, -r             Output raw data fetched from MS Teams API (it contains more info)
+  -j PATH, --jwt PATH   Path to file containing your Microsoft Teams JWT token
+  -t TARGET, --target TARGET
+                        Email address or domain you'd like to fetch information for
+  -l FILE, --list FILE  File containing email addresses or domains you'd like to fethc information for
 ```
 
 ## References
