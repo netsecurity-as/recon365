@@ -1,33 +1,32 @@
-<h1 align="center">recon365</h1>
-<p align="center">
+<center>
+<h1>recon365</h1>
 Gather information from an email address connected to AzureAD or Office 365
-</p>
 <p align="center">
-<a href="#example-outputs">Example outputs</a> •
-<a href="#how-to-find-your-jwt-token">How to find your JWT token</a> •
-<a href="#usage">Usage</a> •
-<a href="#references">References</a>
-<img src="images/demo.png">
+  <a href="#example-outputs">Example outputs</a> •
+  <a href="#how-to-find-your-jwt-token">How to find your JWT token</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#references">References</a>
 </p>
+</center>
 
 ## Example outputs
 ### Get info on on an email address in Azure AD
 ```console
-$ python3 recon365.py --jwt token.txt --target steinar.sonsteby@atea.no
-[+] steinar.sonsteby@atea.no
- | tenantId          : 65f51067-7d65-4aa9-b996-4cc43a0d7111
+$ python3 recon365.py --jwt token.txt --target bob.smith@company.no
+[+] bob.smith@company.com 
+ | tenantId          : 65443347-7d65-4339-b113-4cc43a0d7111
  | isShortProfile    : False
  | accountEnabled    : True
  | featureSettings   : {'coExistenceMode': 'TeamsOnly'}
- | userPrincipalName : steinar.sonsteby@atea.com
- | givenName         : steinar.sonsteby@atea.no
+ | userPrincipalName : bob.smith@company.com
+ | givenName         : bob.smith@company.no
  | surname           :
- | email             : steinar.sonsteby@atea.com
- | tenantName        : Atea
- | displayName       : Steinar Sønsteby
+ | email             : bob.smith@comapny.com
+ | tenantName        : Company AS
+ | displayName       : Bob Smith 
  | type              : Federated
- | mri               : 8:orgid:edb2cd01-125a-4a7a-8f24-610c33d003fe
- | objectId          : edb2cd01-125a-4a7a-8f24-610c33d003fe
+ | mri               : 8:orgid:edb2cd41-315a-4a7a-8f24-690c234503fe
+ | objectId          : edb2cd74-125a-4a7a-8f24-698c33d004gh
  | availability      : Offline
  | devicieType       : Mobile
 ```
@@ -35,40 +34,39 @@ $ python3 recon365.py --jwt token.txt --target steinar.sonsteby@atea.no
 ### User with an Microsfot 356 account
 
 ```console
-$ python3 recon365.py --jwt token.txt -t info@nrk.no
-[+] info@nrk.no
- | skypeId           : karina-4a
- | city              : bergen
- | state             : bergen komune
+$ python3 recon365.py --jwt token.txt -t info@anothercompany.no
+[+] info@anothercompany.no
+ | skypeId           : alice-5b
+ | city              : Oslo
+ | state             : Oslo
  | country           : Norway
- | avatarUrl         : https://api.skype.com/users/karina-4a/profile/avatar
+ | avatarUrl         : https://api.skype.com/users/alice-5b/profile/avatar
  | isShortProfile    : False
  | accountEnabled    : True
- | userPrincipalName : info@nrk.no
- | email             : info@nrk.no
- | displayName       : karina grøneng
+ | userPrincipalName : info@anothercompany.no
+ | email             : info@anothercompany.no
+ | displayName       : Alice Smith 
  | type              : SkypeConsumer
- | mri               : 8:karina-4a
+ | mri               : 8:alice-5b
  | availability      : PresenceUnknown
  | devicieType       : None
 ```
 
 ### Get info on a domain
 ```console
-$ python3 recon365.py --token teams_jwt_token.txt --target nrk.no
-[+] nrk.no
+$ python3 recon365.py --target finalcompany.no
+[+] finalcompany.no
  | State                   : 3
  | UserState               : 2
- | Login                   : nrk.no
+ | Login                   : finalcompany.no
  | NameSpaceType           : Federated
- | DomainName              : nrk.no
+ | DomainName              : finalcompany.no
  | FederationGlobalVersion : -1
- | AuthURL                 : https://sts.nrk.no/adfs/ls/?username=nrk.no&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=
- | FederationBrandName     : NRK
+ | AuthURL                 : https://ok.finalcompany.no/adfs/ls/?username=finalcompany.no&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=
+ | FederationBrandName     : Final Company
  | CloudInstanceName       : microsoftonline.com
  | CloudInstanceIssuerUri  : urn:federation:MicrosoftOnline
 ```
-
 
 ## How to find your JWT token
 Visit https://teams.microsoft.com and fetch the JWT token from the Storage. Be aware that this token may expire after around 24 hours
