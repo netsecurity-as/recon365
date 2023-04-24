@@ -29,7 +29,7 @@ $ python3 recon365.py --jwt token.txt --target bob.smith@company.no
  | devicieType       : Mobile
 ```
 
-### User with an Microsfot 356 account
+### User with a Microsoft 356 account
 
 ```console
 $ python3 recon365.py --jwt token.txt -t info@anothercompany.no
@@ -67,7 +67,7 @@ $ python3 recon365.py --target finalcompany.no
 ```
 
 ## How to find your JWT token
-Visit https://teams.microsoft.com and fetch the JWT token from the Storage. Be aware that this token may expire after around 24 hours
+Visit https://teams.microsoft.com and fetch the JWT token from the Storage. Be aware that this token may expire after around 24 hours.
 
 ![](images/fetch_jwt.png)
 
